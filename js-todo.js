@@ -7,7 +7,7 @@ try {
 } catch (e) {
     todos=null   
 }
-
+//  zamani ke todo khali
 if (!todos){
     todos=[
         "video",
@@ -18,4 +18,22 @@ if (!todos){
     ]
     localStorage.setItem("todos",JSON.stringify(todos))
 }
+
+function createtodos(todos){
+    let todolist=document.querySelector("#todo-list")
+    todolist.innerHTML = ""
+    todos.forEach(todo =>{
+        let li=document.createElement("li")
+        li.className="list-group-item"
+        let span=document.createElement("span")
+        span.textContent=todo
+        let icon=document.createElement("img")
+        icon.src="./Img/remove-icon.png"
+        li.append(span)
+        li.append(icon)
+        todolist.append(li)
+    })
+
+}
+createtodos(todos)
 

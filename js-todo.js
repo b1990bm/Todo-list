@@ -26,7 +26,9 @@ function createtodos(todos){
         let li=document.createElement("li")
         li.className="list-group-item"
         let span=document.createElement("span")
+        //span chon bala {} gozashtim 
         span.textContent=todo.content
+        //shart baray span darsorte true va false bodan
         span.style.textDecoration=todo.status ? "inital" : "line-through"
         let icon=document.createElement("img")
         icon.src="./Img/remove-icon.png"
@@ -41,6 +43,7 @@ function createtodos(todos){
             createtodos(todos)
         })
 
+        //sakhte khte vaste span
         span.addEventListener("click",e=>{
             todos[index].status=  !todos[index].status
             localStorage.setItem("todos",JSON.stringify(todos))
@@ -53,3 +56,27 @@ function createtodos(todos){
 
 createtodos(todos)
 
+let formw = document.querySelector(".form-w")
+let actions = document.querySelector("#action")
+Array.from(actions.children).forEach(action =>{
+    if (action.dataset.action=="add"){
+        action.addEventListener("click",e =>{
+            formw.innerHTML=`
+            <form id="add">
+            <input type="text" class="form-control" name="add" placeholder="ADD To">
+            </form>
+            `
+            
+        })
+    }else if (action.dataset.action=="search"){
+        action.addEventListener("click",e =>{
+            formw.innerHTML=`
+            <form id="search">
+            <input type="text" class="form-control bg-opacity-10" name="search" placeholder="Search To">
+            </form>
+            `
+            
+        })
+
+    }
+})

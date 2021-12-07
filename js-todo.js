@@ -22,7 +22,7 @@ if (!todos){
 function createtodos(todos){
     let todolist=document.querySelector("#todo-list")
     todolist.innerHTML = ""
-    todos.forEach(todo =>{
+    todos.forEach((todo,index) =>{
         let li=document.createElement("li")
         li.className="list-group-item"
         let span=document.createElement("span")
@@ -32,8 +32,16 @@ function createtodos(todos){
         li.append(span)
         li.append(icon)
         todolist.append(li)
+        
+        icon.addEventListener("click",e=>{
+            todos.splice(index,1)
+            localStorage.setItem("todos",JSON.stringify(todos))
+            createtodos(todos)
+        })
+    
     })
-
+    
 }
+
 createtodos(todos)
 

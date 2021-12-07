@@ -73,7 +73,8 @@ Array.from(actions.children).forEach(action =>{
                 if (add.add.value){
                     todos.push({content:add.add.value,status:true})
                     localStorage.setItem("todos",JSON.stringify(todos))    
-                    createtodos(todos)            }
+                    createtodos(todos)
+                }
                 
             })
 
@@ -84,7 +85,23 @@ Array.from(actions.children).forEach(action =>{
             <form id="search">
             <input type="text" class="form-control bg-opacity-10" name="search" placeholder="Search To">
             </form>
+            
             `
+            let search= document.querySelector("#search")
+            search.addEventListener("keyup",e=>{
+                e.preventDefault()
+                if (search.search.value){
+                    let filtertodo = todos.filter(
+                        todo => todo.content.toLowerCase().includes(search.search.value)
+                    )
+                    createtodos(filtertodo)
+                }else{
+                    createtodos(todos)
+
+                }
+
+                
+            })
             
         })
 

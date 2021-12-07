@@ -55,7 +55,7 @@ function createtodos(todos){
 }
 
 createtodos(todos)
-
+//sakhte show va hide input
 let formw = document.querySelector(".form-w")
 let actions = document.querySelector("#action")
 Array.from(actions.children).forEach(action =>{
@@ -66,7 +66,17 @@ Array.from(actions.children).forEach(action =>{
             <input type="text" class="form-control" name="add" placeholder="ADD To">
             </form>
             `
-            
+            //ezafe kardan add be list
+            let add= document.querySelector("#add")
+            add.addEventListener("submit",e=>{
+                e.preventDefault()
+                if (add.add.value){
+                    todos.push({content:add.add.value,status:true})
+                    localStorage.setItem("todos",JSON.stringify(todos))    
+                    createtodos(todos)            }
+                
+            })
+
         })
     }else if (action.dataset.action=="search"){
         action.addEventListener("click",e =>{
